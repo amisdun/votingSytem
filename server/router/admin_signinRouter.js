@@ -1,7 +1,7 @@
-const express = require("express")
+const express = require("express");
+const router = express.Router();
+require("../../index");
 const signin = require("../controller/admin_signinAPI")
-
-let router = express.Router()
 
 router.post("/signin",signin)
 

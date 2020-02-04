@@ -3,7 +3,11 @@ const mongoose = require("mongoose")
 
 let src_presidential_candidate = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    name: {
+    first_name: {
+        type: String,
+        required: true
+    },
+    last_name: {
         type: String,
         required: true
     },
@@ -19,14 +23,23 @@ let src_presidential_candidate = mongoose.Schema({
         type: String,
         required: true
     },
+    passport_pic: {
+        type: String,
+        required: true
+    },
     total_votes: {
-        type: Number
+        type: Number,
+        required: false
     }
 })
 
 let src_financial_candidate = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    name: {
+    first_name: {
+        type: String,
+        required: true
+    },
+    last_name: {
         type: String,
         required: true
     },
@@ -42,14 +55,23 @@ let src_financial_candidate = mongoose.Schema({
         type: String,
         required: true
     },
+    passport_pic: {
+        type: String,
+        required: true
+    },
     total_votes: {
-        type: Number
+        type: Number,
+        required: false
     }
 })
 
 let src_general_candidate = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    name: {
+    first_name: {
+        type: String,
+        required: true
+    },
+    last_name: {
         type: String,
         required: true
     },
@@ -65,14 +87,23 @@ let src_general_candidate = mongoose.Schema({
         type: String,
         required: true
     },
+    passport_pic: {
+        type: String,
+        required: true
+    },
     total_votes: {
-        type: Number
+        type: Number,
+        required: false
     }
 })
 
 let local_nugs_presidential_candidate = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    name: {
+    first_name: {
+        type: String,
+        required: true
+    },
+    last_name: {
         type: String,
         required: true
     },
@@ -88,14 +119,23 @@ let local_nugs_presidential_candidate = mongoose.Schema({
         type: String,
         required: true
     },
+    passport_pic: {
+        type: String,
+        required: true
+    },
     total_votes: {
-        type: Number
+        type: Number,
+        required: false
     }
 })
 
 let nugs_financial_candidate = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    name: {
+    first_name: {
+        type: String,
+        required: true
+    },
+    last_name: {
         type: String,
         required: true
     },
@@ -111,14 +151,23 @@ let nugs_financial_candidate = mongoose.Schema({
         type: String,
         required: true
     },
+    passport_pic: {
+        type: String,
+        required: true
+    },
     total_votes: {
-        type: Number
+        type: Number,
+        required: false
     }
 })
 
 let nugs_general_candidate = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    name: {
+    first_name: {
+        type: String,
+        required: true
+    },
+    last_name: {
         type: String,
         required: true
     },
@@ -134,8 +183,13 @@ let nugs_general_candidate = mongoose.Schema({
         type: String,
         required: true
     },
+    passport_pic: {
+        type: String,
+        required: true
+    },
     total_votes: {
-        type: Number
+        type: Number,
+        required: false 
     }
 })
 

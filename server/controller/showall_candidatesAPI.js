@@ -1,4 +1,6 @@
 const mongoose = require("mongoose")
+const db = require("../db_connection/mongodb");
+mongoose.Promise = global.Promise
 const candidate = require("../model/candidates")
 require("../../index")
 
@@ -8,7 +10,7 @@ let show_all_src_president = async (req,res,next) => {
         if(all_candidate.length >= 1) res.status(200).json({res: "candidates",data: all_candidate})
         else{res.json({res: "No data found"})}
     } catch (error) {
-        res.status(500).json({res: "An error has occured"})
+        res.json({res: "An error has occured"})
     }   
 }
 

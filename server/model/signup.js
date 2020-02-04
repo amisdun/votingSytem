@@ -26,6 +26,10 @@ let student_signup = mongoose.Schema({
         type: String,
         required: true
     },
+    program_name: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true

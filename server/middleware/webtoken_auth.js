@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
+require("../../index")
 
 var authenticate = (req,res,next) =>{
-    jwt.verify(req.query.token, "dbkdbkqrjgrvgcwtkrnhrigukbqk",(err,decode)=>{
+    jwt.verify(req.body.token, "dbkdbkqrjgrvgcwtkrnhrigukbqk",(err,decode)=>{
         if(err){
             res.json({
                 message: "an error has occured",

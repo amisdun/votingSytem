@@ -1,4 +1,6 @@
 const mongoose = require("mongoose")
+const db = require("../db_connection/mongodb");
+mongoose.Promise = global.Promise
 const candidate = require("../model/candidates")
 require("../../index")
 
@@ -7,6 +9,9 @@ let show_one_src_president = async (req,res,next) => {
     try {
         let find_one = await candidate.src_president.findById(id).exec()
         if(find_one) res.json({res: "found",data: find_one})
+        else{
+            res.json({res: "not found"})
+        }
     } catch (error) {
         res.status(500).json({res: "An error has occured"})
     }
@@ -17,6 +22,9 @@ let show_one_src_general = async (req,res,next) => {
     try {
         let find_one = await candidate.src_general.findById(id).exec()
         if(find_one) res.json({res: "found",data: find_one})
+        else{
+            res.json({res: "not found"})
+        }
     } catch (error) {
         res.status(500).json({res: "An error has occured"})
     }
@@ -27,6 +35,9 @@ let show_one_src_financial = async (req,res,next) => {
     try {
         let find_one = await candidate.src_financial.findById(id).exec()
         if(find_one) res.json({res: "found",data: find_one})
+        else{
+            res.json({res: "not found"})
+        }
     } catch (error) {
         res.status(500).json({res: "An error has occured"})
     }
@@ -37,6 +48,9 @@ let show_one_nugs_president = async (req,res,next) => {
     try {
         let find_one = await candidate.nugs_president.findById(id).exec()
         if(find_one) res.json({res: "found",data: find_one})
+        else{
+            res.json({res: "not found"})
+        }
     } catch (error) {
         res.status(500).json({res: "An error has occured"})
     }
@@ -47,6 +61,9 @@ let show_one_nugs_financial = async (req,res,next) => {
     try {
         let find_one = await candidate.nugs_financial.findById(id).exec()
         if(find_one) res.json({res: "found",data: find_one})
+        else{
+            res.json({res: "not found"})
+        }
     } catch (error) {
         res.status(500).json({res: "An error has occured"})
     }
@@ -57,6 +74,9 @@ let show_one_nugs_general = async (req,res,next) => {
     try {
         let find_one = await candidate.nugs_general.findById(id).exec()
         if(find_one) res.json({res: "found",data: find_one})
+        else{
+            res.json({res: "not found"})
+        }
     } catch (error) {
         res.status(500).json({res: "An error has occured"})
     }

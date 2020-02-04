@@ -1,4 +1,6 @@
 const mongoose = require("mongoose")
+const db = require("../db_connection/mongodb");
+mongoose.Promise = global.Promise
 const signup = require("../model/signup")
 const password_hash = require("password-hash")
 require("../../index")
@@ -11,7 +13,7 @@ let admin_signup = async (req,res,next) => {
         else{
             let hash = password_hash.generate(req.body.password)
             await new signup.admin({
-                _id: mongoose.Types.ObjectId,
+                _id: new mongoose.Types.ObjectId,
                 username: username,
                 email: req.body.email,
                 password: hash
@@ -19,6 +21,7 @@ let admin_signup = async (req,res,next) => {
             res.status(201).json({res: "created"})
         }
     } catch (error) {
+        console.log(error)
         res.status(500).json({res: "Error occured"})
     }
 }

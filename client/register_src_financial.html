@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin - Register</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-dark">
+
+  <div class="container">
+    <div class="alert alert-primary mt-5 text-center" style="display: none;" id="alert" role="alert">
+      CANDIDATE CREATED SUCCESSFULLY
+    </div>
+    <div class="alert alert-danger mt-5 text-center" style="display: none;" id="p_alert" role="alert">
+    </div>
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Register SRC financial candidate</div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                  <label for="firstName">First name</label>
+                  <span class="text-danger" id="err1"></span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
+                  <label for="lastName">Last name</label>
+                  <span class="text-danger" id="err2"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="index_number" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                  <label for="index_number">Index Number</label>
+                  <span class="text-danger" id="err3"></span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="program_name" class="form-control" placeholder="Last name" required="required">
+                  <label for="program_name">Program name</label>
+                  <span class="text-danger" id="err4"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="number" id="level" class="form-control" placeholder="Email address" required="required">
+              <label for="level">level</label>
+              <span class="text-danger" id="err5"></span>
+            </div>
+            <div class="custom-file mt-3">
+              <input type="file" class="custom-file-input" id="customFileLang" lang="en">
+              <label class="custom-file-label" for="customFileLang">upload candidate photo</label>
+              <span class="text-danger" id="err6"></span>
+            </div>
+          </div>
+          <a class="btn btn-primary btn-block" id="register" href="#">Register candidate</a>
+          <div class="text-center">
+            <span class="text-center text-success" id="load" disabled style="display: none;">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script>
+    $(document).ready(function(){
+        $("#register").click(function(e){
+            e.preventDefault()
+            let first_name = $("#firstName").val()
+            let last_name = $("#lastName").val()
+            let index_number = $("#index_number").val()
+            let program = $("#program_name").val()
+            let level = $("#level").val()
+            let file = document.getElementById("customFileLang").files[0]
+            if(!file){
+              $("#err6").text("passport picture required")
+            }
+            else{
+              $("#err6").text("")
+            }
+
+            if(!first_name){
+              $("#err1").text("first name required")
+            }
+            else{
+              $("#err1").text("")
+            }
+            if(!last_name){
+              $("#err2").text("last name required")
+            }
+            else{
+              $("#err2").text("")
+            }
+            if(!index_number){
+              $("#err3").text("index number required")
+            }
+            else{
+              $("#err3").text("")
+            }
+            if(!program){
+              $("#err4").text("program name required")
+            }
+            else{
+              $("#err4").text("")
+            }
+            if(!level){
+              $("#err5").text("email required")
+            }
+            else{
+              $("#err5").text("")
+            }
+
+            if(first_name && last_name && level && program && index_number && file){
+              $("#load").show()
+              setTimeout(function(){
+                new Promise((resolve,reject) => {
+                  let reader = new FileReader();
+                  reader.addEventListener("load",() => resolve(reader.result))
+                  reader.addEventListener("error",() => reject(reader.error))
+                  reader.readAsDataURL(file)
+                }).then(passport_pic => {
+                  if(passport_pic) create_src_financial(first_name,last_name,index_number,program,level,passport_pic)
+                })
+              },3000)
+            }
+        })
+
+        // API call to create SRC president
+        let create_src_financial= (first_name,last_name,index_number,program,level,passport_pic) => {
+          let data = {
+            first_name: first_name,
+            last_name: last_name,
+            index_number: index_number,
+            level: level,
+            passport_pic:passport_pic,
+            program: program
+          }
+
+          $.ajax({
+            url: "candidate/src_financial",
+            method: "post",
+            data: data,
+            dataType: "json"
+          })
+          .then(res => {
+            if(res.res == "created"){
+              $("#load").hide()
+              $("#alert").fadeIn(2000)
+              $("#alert").fadeOut(4000)
+              setTimeout(function(){
+                location.reload()
+              },3000)
+            }
+            if(res.res == "exist"){
+              $("#load").hide()
+              $("#alert").text("candidate already exist")
+              $("#alert").fadeIn(2000)
+              $("#alert").fadeOut(4000)
+              setTimeout(function(){
+                location.reload()
+              },3000)
+            }
+          })
+          .catch(err => {
+            if(err.status == 413){
+              $("#load").hide()
+              $("#p_alert").text("file too large")
+              $("#p_alert").fadeIn(2000)
+              $("#p_alert").fadeOut(4000)
+            }
+            console.log(err)
+          })
+        }
+    })
+  </script>
+</body>
+
+</html>

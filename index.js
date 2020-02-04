@@ -1,52 +1,56 @@
-const express = require("express")
-const path = require("path")
-const mongoose = require("mongoose")
-const jwt = require("jsonwebtoken")
-const bodyParser = require("body-parser")
-const cors =  require("cors")
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+const cors = require("cors");
+let jwt = require("jsonwebtoken");
+require("dotenv").config()
 
-// configuring the express app
+let app = express();
 
-let app = express()
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
-// port
-let port = 4000 || process.env.PORT;
-
-// using the configured app
-
-// setting up cors
-app.use(cors())
-
-// setting up bodyParser
-
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json)
-
-//serving static files
-
-// app.use(express.static(""))
+// seriving static files
+app.use(express.static("client"));
 
 // requiring routers
 let admin_sigin = require("./server/router/admin_signinRouter")
 let admin_signup = require("./server/router/admin_signupRouter")
 let student_signup = require("./server/router/student_signupRouter")
 let student_signin = require("./server/router/student_signinRouter")
+let candidate  = require("./server/router/candidateRouter")
+let votes = require("./server/router/votingRouter")
+let reset_system = require("./server/router/reset_systemRouter")
+let fetch_student = require("./server/router/fetch_studentRouter")
+
+// setting up the cross origin resource sharing
+app.use(cors());
 
 // registering routers
 app.use("/admin",admin_sigin)
 app.use("/admin",admin_signup)
 app.use("/student",student_signin)
 app.use("/student",student_signup)
+app.use("/candidate",candidate)
+app.use("/votes",votes)
+app.use("/reset",reset_system)
+app.use("/student",fetch_student)
 
-app.get("/", (req,res,next) => {
-    res.json({
-        res: "welcome to my voting system"
-    })
-    // res.sendFile(path.join(__dirname + ""))
+// specifing the development and production port
+let port = process.env.PORT || 8000;
+
+//serving the homepage to the client
+app.get("/",(req,res) => {
+    res.sendFile(path.join(__dirname) + "/client/student_login.html")
+})
+app.get("/admin",(req,res) => {
+    res.sendFile(path.join(__dirname) + "/client/admin_login.html")
 })
 
-app.listen(port,() => {
-    console.log(`server listening to port ${port}`)
-})
-
+// server port listening
+app.listen(port, () => {
+    console.log(`server listening at port ${port}`);
+});
 module.exports = app;
