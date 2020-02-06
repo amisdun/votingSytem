@@ -15,6 +15,10 @@ app.use(bodyParser.json())
 // seriving static files
 app.use(express.static("client"));
 
+// setting up the cross origin resource sharing
+app.use(cors());
+
+
 // requiring routers
 let admin_sigin = require("./server/router/admin_signinRouter")
 let admin_signup = require("./server/router/admin_signupRouter")
@@ -24,9 +28,6 @@ let candidate  = require("./server/router/candidateRouter")
 let votes = require("./server/router/votingRouter")
 let reset_system = require("./server/router/reset_systemRouter")
 let fetch_student = require("./server/router/fetch_studentRouter")
-
-// setting up the cross origin resource sharing
-app.use(cors());
 
 // registering routers
 app.use("/admin",admin_sigin)
