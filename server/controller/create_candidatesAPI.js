@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const db = require("../db_connection/mongodb");
 mongoose.Promise = global.Promise
 const candidates = require("../model/candidates")
-require("../../index")
+require("../../index.js")
 
 let register_src_president = async (req,res,next) => {
     let index_number = (req.body.index_number).toUpperCase();

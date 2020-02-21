@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise
 const signin = require("../model/signup")
 const password_hash = require("password-hash")
 const jwt = require("jsonwebtoken")
-require("../../index")
+require("../../index.js")
 
 let student_singin = async (req,res,next) => {
     let index_number = req.body.index_number

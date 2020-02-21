@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-require("../../index");
+require("../../index.js");
 
 const reset_system = require("../controller/reset_systemAPI")
 const admin_token_auth = require("../middleware/token_admin")

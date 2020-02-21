@@ -3,7 +3,7 @@ const db = require("../db_connection/mongodb");
 mongoose.Promise = global.Promise
 const student_signup = require("../model/signup")
 const password_hash = require("password-hash")
-require("../../index")
+require("../../index.js")
 
 let signup = async (req,res,next) => {
     let index_number = (req.body.index_number).toUpperCase();

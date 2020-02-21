@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-require("../../index")
+require("../../index.js")
 
 var authenticate = (req,res,next) =>{
     jwt.verify(req.body.token, "dbkdbkqrjgrvgcwtkrnhrigukbqk",(err,decode)=>{

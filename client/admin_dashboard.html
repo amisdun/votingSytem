@@ -1025,11 +1025,11 @@
                 .then(res => {
                   if(res.res == "found"){
                     let candidate = res.data
-                $("#firstname").val(candidate.first_name)
-                $("#lastname").val(candidate.last_name)
-                $("#indexnumber").val(candidate.index_number)
-                $("#level").val(candidate.level)
-                $("#programName").val(candidate.program)
+                    $("#firstname").val(candidate.first_name)
+                    $("#lastname").val(candidate.last_name)
+                    $("#indexnumber").val(candidate.index_number)
+                    $("#level").val(candidate.level)
+                    $("#programName").val(candidate.program)
                     $("#save").click(function(e){
                       
                 console.log(new_id)

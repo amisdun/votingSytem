@@ -1,7 +1,7 @@
 
 const express = require("express");
 const router = express.Router();
-require("../../index");
+require("../../index.js");
 const register = require("../controller/create_candidatesAPI")
 const delete_all = require("../controller/deleteall_candidatesAPI")
 const delete_one = require("../controller/deleteone_candidateAPI")

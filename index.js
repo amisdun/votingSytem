@@ -8,9 +8,9 @@ require("dotenv").config()
 let app = express();
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true }))
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb', extended: true}))
 
 // seriving static files
 app.use(express.static("client"));

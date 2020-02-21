@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const db = require("../db_connection/mongodb")
-require("../../index")
+require("../../index.js")
 mongoose.Promise = global.Promise
 const student = require("../model/signup")
 const candidate = require("../model/candidates")

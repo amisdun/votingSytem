@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-require("../../index");
+require("../../index.js");
 
 const fetch_student = require("../controller/fetch_studentsAPI")
 

@@ -3,7 +3,7 @@ const db = require("../db_connection/mongodb");
 mongoose.Promise = global.Promise
 const candidate = require("../model/candidates")
 const student = require("../model/signup")
-require("../../index")
+require("../../index.js")
 
 let src_president_vote = async (req,res,next) => {
     let id = req.params.id

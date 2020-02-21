@@ -3,7 +3,7 @@ const db = require("../db_connection/mongodb");
 mongoose.Promise = global.Promise
 const signup = require("../model/signup")
 const password_hash = require("password-hash")
-require("../../index")
+require("../../index.js")
 
 let admin_signup = async (req,res,next) => {
     let username = req.body.username
