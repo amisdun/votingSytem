@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true }))
 app.use(bodyParser.json({limit: '50mb', extended: true}))
 
 // seriving static files
-app.use(express.static(__dirname + "/client/"));
+app.use(express.static("client"));
 
 // setting up the cross origin resource sharing
 app.use(cors());
