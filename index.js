@@ -42,8 +42,14 @@ app.use("/student",fetch_student)
 // specifing the development and production port
 let port;
 
-if(process.env.NODE_ENV === "production") port = process.env.PORT
-else port = 8000
+if(process.env.NODE_ENV === "production"){
+    port = process.env.PORT
+}
+else{
+    port = 8000
+
+    
+}
 
 //serving the homepage to the client
 app.get("/",(req,res) => {
