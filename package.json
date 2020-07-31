@@ -2,9 +2,9 @@
   "name": "voting_system",
   "version": "1.0.0",
   "description": "voting system for UENR",
-  "main": "node index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "index.js"
+    "test": "node index.js"
   },
   "author": "dunamis",
   "license": "ISC",
