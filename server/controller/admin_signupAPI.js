@@ -15,6 +15,7 @@ let admin_signup = async (req,res,next) => {
             await new signup.admin({
                 _id: new mongoose.Types.ObjectId,
                 username: username,
+                phone_number: req.body.phone_number,
                 email: req.body.email,
                 password: hash
             }).save()

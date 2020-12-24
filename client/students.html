@@ -173,6 +173,13 @@
               </div>
             </div>
             <div class="form-group">
+              <div class="form-label-group">
+                <input type="number" id="phone_number" class="form-control" placeholder="233123456789" required="required">
+                <label for="phone_number">Phone Number</label>
+                <span id="err7" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
@@ -248,10 +255,14 @@
         let email = $("#inputEmail").val();
         let password = $("#inputPassword").val();
         let confirm_password = $("#confirmPassword").val();
+        let phone_number = $("#phone_number").val()
         let match;
 
         if(!index_number){$("#err1").text("index number required")}
         else{$("#err1").text("")}
+
+        if(!phone_number){$("#err7").text("phone number is requires")}
+        else{$("#err7").text("")}
 
         if(!program_name){$("#err2").text("program name required")}
         else{$("#err2").text("")}
@@ -268,21 +279,22 @@
         if(password != confirm_password){$("#err6").text("password do not match"); match = false}
         else{$("#err6").text(""); match = true}
 
-        if(index_number && program_name && email && match == true){
+        if(index_number && program_name && email && match == true, phone_number){
           $("#msg").text("")
           $("#load").css("display","block")
           setTimeout(function(){
-            register_student(index_number,program_name,email,password)
+            register_student(index_number,program_name,email,password, phone_number)
           },2000)
         }
       })
 
-      let register_student = (index_number,program_name,email,password) => {
+      let register_student = (index_number,program_name,email,password, phone_number) => {
           let data = {
             index_number: index_number,
             program_name: program_name,
             email: email,
-            password: password
+            password: password,
+            phone_number: phone_number
           }
           $.ajax({
             url: "student/signup",

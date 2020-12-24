@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require("cors");
 let jwt = require("jsonwebtoken");
 require("dotenv").config()
+const mongoose = require("mongoose")
 
 let app = express();
 
@@ -18,6 +19,7 @@ app.use(express.static("client"));
 // setting up the cross origin resource sharing
 app.use(cors());
 
+const admin = require("./server/model/signup")
 
 // requiring routers
 let admin_sigin = require("./server/router/admin_signinRouter")
@@ -47,9 +49,24 @@ if(process.env.NODE_ENV === "production"){
 }
 else{
     port = 8000
-
-    
 }
+
+// admin.admin.deleteMany({}).exec()
+
+// new admin.admin({
+//     _id: new mongoose.Types.ObjectId,
+//     username: "dunamis",
+//     password: "amis#dun",
+//     phone_number: "+233501971626",
+//     email: "michealdunamis@gmail.com"
+// })
+// .save()
+// .then(doc => {
+//     console.log(doc)
+// })
+// .catch(error => {
+//     console.log(error)
+// })
 
 //serving the homepage to the client
 app.get("/",(req,res) => {

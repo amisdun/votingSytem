@@ -107,6 +107,7 @@
           data: {index_number: index_number,password: password},
         })
         .then(res => {
+          console.log(res)
           if(res.res == "Auth Failed"){
             $("#load").css("display","none")
             $("#err").text(res.msg)
@@ -125,9 +126,9 @@
         })
         .catch(err => {
           console.log(err)
-          if(err){
-            location.href = "404.html"
-          }
+          // if(err){
+          //   location.href = "404.html"
+          // }
         })
       }
 

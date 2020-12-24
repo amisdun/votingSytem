@@ -17,6 +17,7 @@ let signup = async (req,res,next) => {
                 index_number: index_number,
                 password: hash,
                 email: req.body.email,
+                phone_number: req.body.phone_number,
                 program_name: req.body.program_name,
                 src_president_vote: false,
                 src_general_vote: false,

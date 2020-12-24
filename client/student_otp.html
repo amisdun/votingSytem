@@ -28,7 +28,7 @@
         <form> 
           <div class="form-group">
             <div class="form-label-group">
-              <input type="email" id="otp_verification" class="form-control" placeholder="OTP number" required="required" autofocus="autofocus">
+              <input type="number" id="otp_verification" class="form-control" placeholder="OTP number" required="required" autofocus="autofocus">
               <label for="otp_verification">OTP Verification</label>
               <span id="index_err" class="text-danger"></span>
             </div>
@@ -59,7 +59,7 @@
         $("a#login").click(function(e){
         $("#err").text("")
         e.preventDefault()
-        let otp_number = $("#inputEmail").val();
+        let otp_number = $("#otp_verification").val();
         
 
         if(!otp_number){
@@ -77,33 +77,32 @@
 
       let student_signin = (otp_number) => {
           let token = localStorage.getItem("token")
+          console.log(token)
         $.ajax({
-          url: "student/otp_check",
+          url: "student/otp_verify",
           method: "post",
           dataType: "json",
           headers: { "Authorization": `Bearer ${token}` },
           data: {otp_number: otp_number},
         })
         .then(res => {
-          if(res.res == "Auth Failed"){
-            $("#load").css("display","none")
-            $("#err").text(res.msg)
-          }
-
-          else if(res.res == "signin failed"){
-            $("#load").css("display","none")
-            $("#err").text(res.msg)
-          }
-          else{
-            
+          if(res.res == "success"){
             location.href = "student_interface.html"
           }
+
+          
         })
         .catch(err => {
-          console.log(err)
-          if(err){
-            location.href = "404.html"
+          console.log(err.responseJSON)
+          if(err.responseJSON.res == "error"){
+            $("#load").css("display","none")
+            $("#err").text(err.responseJSON.msg)
+
+            console.log("error")
           }
+        //   if(err){
+        //     location.href = "404.html"
+        //   }
         })
       }
       

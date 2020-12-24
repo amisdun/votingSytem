@@ -11,6 +11,7 @@ let admin_singin = async (req,res,next) => {
     let username = req.body.username
     try {
         let admin = await signin.admin.findOne({username: username}).exec()
+        console.log("admin", admin)
         if(admin){
             let payload = {username: admin.username,userId: admin._id}
             let pass_verify = password_hash.verify(req.body.password, admin.password)
