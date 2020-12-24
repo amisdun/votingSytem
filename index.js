@@ -45,7 +45,7 @@ app.use("/student",fetch_student)
 let port;
 
 if(process.env.NODE_ENV === "production"){
-    port = 8000
+    port = process.env.PORT
 }
 else{
     port = 8000
