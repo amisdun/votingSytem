@@ -296,7 +296,7 @@
             $("#reset").click(function(e){
               e.preventDefault()
               $.ajax({
-                url: "reset/reset_system",
+                url: "https://stark-river-68039.herokuapp.com/reset/reset_system",
                 method: "delete",
                 data: {token:token},
                 dataType: "json"
