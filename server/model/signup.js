@@ -10,6 +10,10 @@ let admin_signup = mongoose.Schema({
         type: String,
         required: true
     },
+    phone_number: {
+        type: Number,
+        required: true
+    },
     email: {
         type: String,
         rquired: true
@@ -24,6 +28,10 @@ let student_signup = mongoose.Schema({
     },
     password: {
         type: String,
+        required: true
+    },
+    phone_number: {
+        type: Number,
         required: true
     },
     program_name: {

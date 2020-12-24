@@ -11,6 +11,10 @@ let src_presidential_candidate = mongoose.Schema({
         type: String,
         required: true
     },
+    phone_number: {
+        type: Number,
+        required: true
+    },
     index_number: {
         type: String,
         required: true
@@ -41,6 +45,10 @@ let src_financial_candidate = mongoose.Schema({
     },
     last_name: {
         type: String,
+        required: true
+    },
+    phone_number: {
+        type: Number,
         required: true
     },
     index_number: {
@@ -75,6 +83,10 @@ let src_general_candidate = mongoose.Schema({
         type: String,
         required: true
     },
+    phone_number: {
+        type: Number,
+        required: true
+    },
     index_number: {
         type: String,
         required: true
@@ -105,6 +117,10 @@ let local_nugs_presidential_candidate = mongoose.Schema({
     },
     last_name: {
         type: String,
+        required: true
+    },
+    phone_number: {
+        type: Number,
         required: true
     },
     index_number: {
@@ -139,6 +155,10 @@ let nugs_financial_candidate = mongoose.Schema({
         type: String,
         required: true
     },
+    phone_number: {
+        type: Number,
+        required: true
+    },
     index_number: {
         type: String,
         required: true
@@ -169,6 +189,10 @@ let nugs_general_candidate = mongoose.Schema({
     },
     last_name: {
         type: String,
+        required: true
+    },
+    phone_number: {
+        type: Number,
         required: true
     },
     index_number: {
